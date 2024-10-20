@@ -17,6 +17,7 @@ interface ProductRepository : JpaRepository<Product, Int>{
         FROM Product p JOIN Category c ON p.categoryId = c.id
         WHERE (:searchQuery IS NULL OR :searchQuery = '' OR LOWER(p.productName) LIKE LOWER(CONCAT('%', :searchQuery, '%')))
           AND (:selectedCategory IS NULL OR p.categoryId = :selectedCategory)
+           ORDER BY p.id DESC
     """)
     fun findBySearchQueryAndCategory(
         @Param("searchQuery") searchQuery: String?,
@@ -28,6 +29,7 @@ interface ProductRepository : JpaRepository<Product, Int>{
         SELECT new com.itgenius.springboot_store_api.dto.ProductCategoryDTO(p.id, p.productName, p.unitPrice, p.unitInStock, p.productPicture, c.id, c.categoryName, p.createdDate, p.modifiedDate)
         FROM Product p JOIN Category c ON p.categoryId = c.id
         WHERE p.id = :id
+         ORDER BY p.id DESC
     """)
     fun findProductWithCategory(@Param("id") id: Int): Optional<ProductCategoryDTO>
 
