@@ -63,6 +63,7 @@ class SecurityConfig(
         config.addAllowedOrigin("http://localhost:8080")
         config.addAllowedOrigin("http://localhost:4200")
         config.addAllowedOrigin("http://localhost:3000")
+        config.addAllowedOrigin("http://localhost:3300")
         config.addAllowedOrigin("http://localhost:5173")
         config.addAllowedOrigin("http://localhost:5000")
         config.addAllowedOrigin("http://localhost:5001")
