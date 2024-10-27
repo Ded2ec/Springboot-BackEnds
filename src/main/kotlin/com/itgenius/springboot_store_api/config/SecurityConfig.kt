@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
@@ -35,6 +36,9 @@ class SecurityConfig(
                     .requestMatchers("/", "index.html", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html","/css/**", "/images/**","/uploads/**").permitAll()
                     .requestMatchers("/api/v1/authenticate/**").permitAll()
                     .anyRequest().authenticated()
+
+
+
             }
             .sessionManagement { session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -81,7 +85,10 @@ class SecurityConfig(
         config.addAllowedMethod("*")
 
         source.registerCorsConfiguration("/**", config)
+
         return source
     }
 
 }
+
+

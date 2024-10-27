@@ -9,7 +9,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 @EnableWebMvc
 class WebConfig : WebMvcConfigurer {
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
-        // กำหนดการเข้าถึงไฟล์จากโฟลเดอร์ /uploads
+        // สำหรับ static resources ภายใน resources
+        registry.addResourceHandler("/css/**")
+            .addResourceLocations("classpath:/static/css/")
+        registry.addResourceHandler("/images/**")
+            .addResourceLocations("classpath:/static/images/")
+
+        // สำหรับ uploads จากภายนอก
         registry.addResourceHandler("/uploads/**")
             .addResourceLocations("file:./uploads/")
             .setCachePeriod(0) // ปิดการ Cache เพื่อให้สามารถโหลดไฟล์ใหม่ได้เสมอ
